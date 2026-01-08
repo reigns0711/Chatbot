@@ -1,0 +1,2 @@
+# Ignore all node modules at repository root
+node_modules/
