@@ -34,9 +34,10 @@ function App() {
       } else {
         throw new Error("Invalid response format from server");
       }
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Failed to send message:', error);
-      const errorMessage = error.response?.data?.details || error.message || "Unknown connection error";
+      const err = error as { response?: { data?: { details?: string } }; message?: string };
+      const errorMessage = err.response?.data?.details || err.message || "Unknown connection error";
       setMessages((prev) => [
         ...prev,
         { role: 'assistant', content: `Sorry, I'm having trouble: ${errorMessage}. Please check your backend terminal.` },

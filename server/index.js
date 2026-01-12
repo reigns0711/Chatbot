@@ -1,4 +1,5 @@
 const express = require('express');
+const process = require('node:process');
 const cors = require('cors');
 const dotenv = require('dotenv');
 const { GoogleGenerativeAI, HarmCategory, HarmBlockThreshold } = require('@google/generative-ai');
@@ -19,7 +20,7 @@ app.use(cors());
 app.use(express.json());
 
 // Request logger
-app.use((req, res, next) => {
+app.use((req, _res, next) => {
   console.log(`${new Date().toISOString()} - ${req.method} ${req.path}`);
   next();
 });
@@ -112,7 +113,7 @@ app.post('/api/chat', async (req, res) => {
   });
 });
 
-app.get('/health', (req, res) => {
+app.get('/health', (_req, res) => {
   res.json({ status: 'ok' });
 });
 
