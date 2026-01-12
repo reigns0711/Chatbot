@@ -1,5 +1,5 @@
 /// <reference lib="deno.ns" />
-import { assertEquals } from "https://deno.land/std@0.224.0/assert/mod.ts";
+import { assertEquals } from "@std/assert";
 
 Deno.test("Basic math test - Server Smoke Test", () => {
     const x = 1 + 2;
